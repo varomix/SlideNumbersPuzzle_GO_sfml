@@ -5,6 +5,7 @@ import (
 	"time"
 
 	sf "github.com/manyminds/gosfml"
+	"github.com/varomix/mix"
 )
 
 func init() {
@@ -47,7 +48,8 @@ func main() {
 	btn.SetFillColor(sf.ColorGreen())
 	btn.Move(sf.Vector2f{200, 300})
 
-	// btn := mix.NewBtn(0, 0, "hello")
+	btn2 := mix.NewBtn(0, 0, "hello")
+	btn2.Text = "die"
 
 	for renderWindow.IsOpen() {
 		select {
