@@ -11,6 +11,12 @@ func init() {
 	runtime.LockOSThread()
 }
 
+type MainMenu struct {
+	rect *sf.RectangleShape
+	text *sf.Text
+	font *sf.Font
+}
+
 func main() {
 	ticker := time.NewTicker(time.Second / 60)
 
@@ -33,6 +39,15 @@ func main() {
 	testTxt, _ := sf.NewText(font)
 	testTxt.SetString("Test text")
 	testTxt.SetCharacterSize(36)
+
+	btn, _ := sf.NewRectangleShape()
+	btn.SetSize(sf.Vector2f{64, 32})
+	btn.SetOutlineThickness(3)
+	btn.SetOutlineColor(sf.ColorBlack())
+	btn.SetFillColor(sf.ColorGreen())
+	btn.Move(sf.Vector2f{200, 300})
+
+	// btn := mix.NewBtn(0, 0, "hello")
 
 	for renderWindow.IsOpen() {
 		select {
@@ -57,6 +72,7 @@ func main() {
 
 		// Draw here
 		renderWindow.Draw(bg, sf.DefaultRenderStates())
+		renderWindow.Draw(btn, sf.DefaultRenderStates())
 		renderWindow.Draw(testTxt, sf.DefaultRenderStates())
 
 		// and display it
