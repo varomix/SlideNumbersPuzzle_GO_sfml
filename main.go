@@ -5,7 +5,7 @@ import (
 	"time"
 
 	sf "github.com/manyminds/gosfml"
-	"github.com/varomix/mix"
+	"github.com/varomix/SlideNumbersPuzzle_GO_sfml/mix"
 )
 
 func init() {
@@ -48,8 +48,9 @@ func main() {
 	btn.SetFillColor(sf.ColorGreen())
 	btn.Move(sf.Vector2f{200, 300})
 
-	btn2 := mix.NewBtn(0, 0, "hello")
-	btn2.Text = "die"
+	btn2 := mix.NewButton()
+	btn2.SetText("Quit")
+	btn2.Move(10, 50)
 
 	for renderWindow.IsOpen() {
 		select {
@@ -75,6 +76,7 @@ func main() {
 		// Draw here
 		renderWindow.Draw(bg, sf.DefaultRenderStates())
 		renderWindow.Draw(btn, sf.DefaultRenderStates())
+		renderWindow.Draw(btn2, sf.DefaultRenderStates())
 		renderWindow.Draw(testTxt, sf.DefaultRenderStates())
 
 		// and display it
