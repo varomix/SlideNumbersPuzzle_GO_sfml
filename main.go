@@ -49,8 +49,9 @@ func main() {
 	btn.Move(sf.Vector2f{200, 300})
 
 	btn2 := mix.NewButton()
-	btn2.SetText("Quit")
-	btn2.Move(10, 50)
+	//btn2.SetText("PLAY")
+	btn2.SetSize(256, 256)
+	btn2.Move(128, 300)
 
 	for renderWindow.IsOpen() {
 		select {
@@ -65,6 +66,8 @@ func main() {
 				case sf.EventClosed:
 					renderWindow.Close()
 
+				default:
+					btn2.Events(ev) // send click to button
 				}
 			}
 
@@ -75,9 +78,9 @@ func main() {
 
 		// Draw here
 		renderWindow.Draw(bg, sf.DefaultRenderStates())
-		renderWindow.Draw(btn, sf.DefaultRenderStates())
+		//renderWindow.Draw(btn, sf.DefaultRenderStates())
 		renderWindow.Draw(btn2, sf.DefaultRenderStates())
-		renderWindow.Draw(testTxt, sf.DefaultRenderStates())
+		//renderWindow.Draw(testTxt, sf.DefaultRenderStates())
 
 		// and display it
 		renderWindow.Display()
