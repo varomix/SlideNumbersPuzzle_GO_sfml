@@ -49,9 +49,10 @@ func main() {
 	btn.Move(sf.Vector2f{200, 300})
 
 	btn2 := mix.NewButton()
-	//btn2.SetText("PLAY")
+	btn2.SetText("OPTIONS")
 	btn2.SetSize(256, 256)
-	btn2.Move(128, 300)
+	btn2.Move(100, 100)
+	btn2.SetTextSize(34)
 
 	for renderWindow.IsOpen() {
 		select {
