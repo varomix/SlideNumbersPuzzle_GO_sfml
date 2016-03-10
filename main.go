@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"runtime"
 	"time"
 
@@ -11,6 +12,12 @@ import (
 func init() {
 	runtime.LockOSThread()
 }
+
+func movePiece() {
+	fmt.Println("Moving piece")
+}
+
+var btn1 mix.Button
 
 func main() {
 	ticker := time.NewTicker(time.Second / 60)
@@ -41,6 +48,13 @@ func main() {
 	btn1.Move(0, 0)
 	btn1.SetTextSize(48)
 	//btn1.SetTextSize(48)
+
+	// btn1.Clicked(func() {
+	// 	fmt.Println("Clicked the button on main")
+	// 	btn1.Move(128, 0)
+	// })
+
+	btn1.Clicked(movePiece)
 
 	btn2 := mix.NewButton()
 	btn2.SetText("2")
@@ -83,9 +97,6 @@ func main() {
 
 			// and display it
 			renderWindow.Display()
-
 		}
-
 	}
-
 }
