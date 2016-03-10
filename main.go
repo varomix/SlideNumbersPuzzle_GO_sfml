@@ -12,12 +12,6 @@ func init() {
 	runtime.LockOSThread()
 }
 
-type MainMenu struct {
-	rect *sf.RectangleShape
-	text *sf.Text
-	font *sf.Font
-}
-
 func main() {
 	ticker := time.NewTicker(time.Second / 60)
 
@@ -27,7 +21,7 @@ func main() {
 	)
 
 	// main window
-	renderWindow := sf.NewRenderWindow(sf.VideoMode{gameWidth, gameHeight, 32}, "Slide Numbers Puzzle", sf.StyleClose, sf.DefaultContextSettings())
+	renderWindow := sf.NewRenderWindow(sf.VideoMode{Width: gameWidth, Height: gameHeight, BitsPerPixel: 32}, "Slide Numbers Puzzle", sf.StyleClose, sf.DefaultContextSettings())
 
 	// bg texture
 	bgTex, _ := sf.NewTextureFromFile("assets/images/bg.png", nil)
@@ -38,26 +32,20 @@ func main() {
 
 	// Title
 	testTxt, _ := sf.NewText(font)
-	testTxt.SetString("Test text")
+	testTxt.SetString("Slide Numbers Puzzle")
 	testTxt.SetCharacterSize(36)
-
-	//btn, _ := sf.NewRectangleShape()
-	//btn.SetSize(sf.Vector2f{64, 32})
-	//btn.SetOutlineThickness(3)
-	//btn.SetOutlineColor(sf.ColorBlack())
-	//btn.SetFillColor(sf.ColorGreen())
-	//btn.Move(sf.Vector2f{200, 300})
 
 	btn1 := mix.NewButton()
 	btn1.SetText("1")
 	//btn1.SetSize(128, 128)
-	btn1.Move(200, 128)
+	btn1.Move(0, 0)
+	btn1.SetTextSize(48)
 	//btn1.SetTextSize(48)
 
 	btn2 := mix.NewButton()
 	btn2.SetText("2")
-	btn2.SetSize(128, 128)
-	btn2.Move(10, 128)
+	// btn2.SetSize(128, 128)
+	btn2.Move(0, 128)
 	btn2.SetTextSize(48)
 
 	for renderWindow.IsOpen() {
@@ -74,7 +62,9 @@ func main() {
 					renderWindow.Close()
 
 				default:
-					btn1.Events(ev) // send click to button
+					// send click to button
+					btn1.Events(ev)
+					btn2.Events(ev)
 
 				}
 			}
@@ -82,25 +72,13 @@ func main() {
 			// clear window
 			renderWindow.Clear(sf.ColorCyan())
 
-			//if btn2.GetPos().X < 128 {
-			//fmt.Println(btn2.GetPos().X)
-			//btn2.Move(5, 0)
-			//}
-
-			//fmt.Println(mix.Linear(btn2.GetPos().X, 2, 1))
-
-			//if 200-btn2.GetPos().X > 0 {
-			//	btn2.Move(5, 0)
-			//}
-
-			//mix.Mover(btn1, 200, 0)
-			mix.Mover(btn1, 0, 0, 5, "left")
+			// mix.Mover(btn1, 0, 0, 5, "left")
 
 			// Draw here
 			renderWindow.Draw(bg, sf.DefaultRenderStates())
 			//renderWindow.Draw(btn, sf.DefaultRenderStates())
 			renderWindow.Draw(btn1, sf.DefaultRenderStates())
-			//renderWindow.Draw(btn2, sf.DefaultRenderStates())
+			renderWindow.Draw(btn2, sf.DefaultRenderStates())
 			renderWindow.Draw(testTxt, sf.DefaultRenderStates())
 
 			// and display it
