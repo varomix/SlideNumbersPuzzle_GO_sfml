@@ -48,10 +48,16 @@ func main() {
 	//btn.SetFillColor(sf.ColorGreen())
 	//btn.Move(sf.Vector2f{200, 300})
 
+	btn1 := mix.NewButton()
+	btn1.SetText("1")
+	//btn1.SetSize(128, 128)
+	btn1.Move(200, 128)
+	//btn1.SetTextSize(48)
+
 	btn2 := mix.NewButton()
-	btn2.SetText("1")
+	btn2.SetText("2")
 	btn2.SetSize(128, 128)
-	btn2.Move(300, 15)
+	btn2.Move(10, 128)
 	btn2.SetTextSize(48)
 
 	for renderWindow.IsOpen() {
@@ -68,30 +74,39 @@ func main() {
 					renderWindow.Close()
 
 				default:
-					btn2.Events(ev) // send click to button
+					btn1.Events(ev) // send click to button
 
 				}
 			}
 
+			// clear window
+			renderWindow.Clear(sf.ColorCyan())
+
+			//if btn2.GetPos().X < 128 {
+			//fmt.Println(btn2.GetPos().X)
+			//btn2.Move(5, 0)
+			//}
+
+			//fmt.Println(mix.Linear(btn2.GetPos().X, 2, 1))
+
+			//if 200-btn2.GetPos().X > 0 {
+			//	btn2.Move(5, 0)
+			//}
+
+			//mix.Mover(btn1, 200, 0)
+			mix.Mover(btn1, 0, 0, 5, "left")
+
+			// Draw here
+			renderWindow.Draw(bg, sf.DefaultRenderStates())
+			//renderWindow.Draw(btn, sf.DefaultRenderStates())
+			renderWindow.Draw(btn1, sf.DefaultRenderStates())
+			//renderWindow.Draw(btn2, sf.DefaultRenderStates())
+			renderWindow.Draw(testTxt, sf.DefaultRenderStates())
+
+			// and display it
+			renderWindow.Display()
+
 		}
-
-		// clear window
-		renderWindow.Clear(sf.ColorCyan())
-
-		if 200-btn2.GetPos().X > 0 {
-			btn2.Move(5, 0)
-		} else if -200-btn2.GetPos().X < 0 {
-			btn2.Move(-5, 0)
-		}
-
-		// Draw here
-		renderWindow.Draw(bg, sf.DefaultRenderStates())
-		//renderWindow.Draw(btn, sf.DefaultRenderStates())
-		renderWindow.Draw(btn2, sf.DefaultRenderStates())
-		//renderWindow.Draw(testTxt, sf.DefaultRenderStates())
-
-		// and display it
-		renderWindow.Display()
 
 	}
 
