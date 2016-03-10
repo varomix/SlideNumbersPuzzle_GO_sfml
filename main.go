@@ -41,18 +41,18 @@ func main() {
 	testTxt.SetString("Test text")
 	testTxt.SetCharacterSize(36)
 
-	btn, _ := sf.NewRectangleShape()
-	btn.SetSize(sf.Vector2f{64, 32})
-	btn.SetOutlineThickness(3)
-	btn.SetOutlineColor(sf.ColorBlack())
-	btn.SetFillColor(sf.ColorGreen())
-	btn.Move(sf.Vector2f{200, 300})
+	//btn, _ := sf.NewRectangleShape()
+	//btn.SetSize(sf.Vector2f{64, 32})
+	//btn.SetOutlineThickness(3)
+	//btn.SetOutlineColor(sf.ColorBlack())
+	//btn.SetFillColor(sf.ColorGreen())
+	//btn.Move(sf.Vector2f{200, 300})
 
 	btn2 := mix.NewButton()
-	btn2.SetText("OPTIONS")
-	btn2.SetSize(256, 256)
-	btn2.Move(100, 100)
-	btn2.SetTextSize(34)
+	btn2.SetText("1")
+	btn2.SetSize(128, 128)
+	btn2.Move(300, 15)
+	btn2.SetTextSize(48)
 
 	for renderWindow.IsOpen() {
 		select {
@@ -69,6 +69,7 @@ func main() {
 
 				default:
 					btn2.Events(ev) // send click to button
+
 				}
 			}
 
@@ -76,6 +77,12 @@ func main() {
 
 		// clear window
 		renderWindow.Clear(sf.ColorCyan())
+
+		if 200-btn2.GetPos().X > 0 {
+			btn2.Move(5, 0)
+		} else if -200-btn2.GetPos().X < 0 {
+			btn2.Move(-5, 0)
+		}
 
 		// Draw here
 		renderWindow.Draw(bg, sf.DefaultRenderStates())
