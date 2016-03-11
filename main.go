@@ -33,6 +33,7 @@ func main() {
 	// bg texture
 	bgTex, _ := sf.NewTextureFromFile("assets/images/bg.png", nil)
 	bg, _ := sf.NewSprite(bgTex)
+	bg.SetColor(sf.ColorCyan())
 
 	// Load font
 	font, _ := sf.NewFontFromFile("assets/fonts/LuckiestGuy.ttf")
@@ -47,6 +48,7 @@ func main() {
 	//btn1.SetSize(128, 128)
 	btn1.Move(0, 0)
 	btn1.SetTextSize(48)
+	btn1.SetTexture("assets/images/block.png")
 	//btn1.SetTextSize(48)
 
 	// btn1.Clicked(func() {
